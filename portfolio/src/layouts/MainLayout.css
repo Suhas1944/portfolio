@@ -1,0 +1,15 @@
+.min-h-screen {
+  min-height: 100vh;
+}
+
+.flex-grow {
+  flex-grow: 1;
+}
+
+.pt-24 {
+  padding-top: 6rem; /* Make sure content doesn't hide behind fixed navbar */
+}
+
+.pb-8 {
+  padding-bottom: 2rem;
+}
