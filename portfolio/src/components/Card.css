@@ -67,11 +67,98 @@
 }
 
 .card-tag {
-  font-size: 0.75rem;
-  padding: 0.25rem 0.75rem;
+  font-size: 0.72rem;
+  padding: 0.22rem 0.6rem;
   background: var(--bg-tertiary);
   border-radius: 12px;
-  color: var(--text-primary);
+  color: var(--text-secondary);
   font-weight: 500;
   border: 1px solid var(--border-color);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
 }
+
+.card-tag::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: var(--brand-color);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 0;
+}
+
+.card-tag:hover {
+  color: #ffffff;
+  border-color: var(--brand-color);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3), 0 0 8px rgba(var(--brand-color), 0.2);
+}
+
+.card-tag:hover::before {
+  opacity: 0.1;
+}
+
+.tag-icon, .tag-text {
+  position: relative;
+  z-index: 1;
+}
+
+.tag-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+}
+
+/* Hover Micro-animations */
+@keyframes spinSlow {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { transform: scale(1); filter: drop-shadow(0 0 2px var(--brand-color)); }
+  50% { transform: scale(1.2); filter: drop-shadow(0 0 6px var(--brand-color)); }
+}
+
+@keyframes floatIcon {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+
+@keyframes bounceIcon {
+  0%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-4px); }
+  60% { transform: translateY(-1px); }
+}
+
+/* React spin animation triggered on tag hover */
+.card-tag:hover .spin-hover {
+  animation: spinSlow 3s linear infinite;
+}
+
+/* Node.js / .NET pulse animation on hover */
+.card-tag:hover .pulse-hover {
+  animation: pulseGlow 1.5s ease-in-out infinite;
+}
+
+/* Express / JS float animation on hover */
+.card-tag:hover .float-hover {
+  animation: floatIcon 1.5s ease-in-out infinite;
+}
+
+/* MongoDB bounce animation on hover */
+.card-tag:hover .bounce-hover {
+  animation: bounceIcon 1s ease-in-out infinite;
+}
+
+/* Generic backup scaling */
+.card-tag:hover .tag-icon:not([class*="-hover"]) {
+  transform: scale(1.15);
+}
+

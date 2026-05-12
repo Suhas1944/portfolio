@@ -7,7 +7,7 @@
 }
 
 .pt-24 {
-  padding-top: 6rem; /* Make sure content doesn't hide behind fixed navbar */
+  padding-top: 3.5rem; /* Make sure content doesn't hide behind fixed navbar */
 }
 
 .pb-8 {

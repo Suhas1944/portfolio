@@ -1,0 +1,325 @@
+/* Home Hero and Floating Icons styling */
+.hero-avatar-wrapper {
+  position: relative;
+  display: inline-block;
+  margin-top: 1rem;
+  margin-bottom: 2.5rem;
+}
+
+/* Glowing background backdrop aura behind the avatar and floating skills */
+.hero-avatar-wrapper::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 140%;
+  height: 140%;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.14) 0%, rgba(168, 85, 247, 0.05) 50%, transparent 70%);
+  z-index: -1;
+  pointer-events: none;
+  filter: blur(22px);
+}
+
+/* Base style for floating tech bubbles */
+.floating-icon {
+  position: absolute;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%), var(--glass-bg);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.95rem;
+  color: var(--brand-color);
+  box-shadow: 
+    0 8px 24px rgba(0, 0, 0, 0.35), 
+    inset 0 1px 1.5px rgba(255, 255, 255, 0.15);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+  z-index: 5;
+}
+
+/* Floating positions around central avatar - symmetrical 8-point circular orbit configuration */
+.floating-icon-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.3s ease;
+}
+
+/* Left Column (HTML, React, Express, JS) */
+.icon-html {
+  top: -10%;
+  left: -32%;
+}
+.icon-html .floating-icon-inner {
+  animation: floatX1 6.8s ease-in-out infinite;
+}
+
+.icon-react {
+  top: 18%;
+  left: -48%;
+}
+.icon-react .floating-icon-inner {
+  animation: floatX2 6.2s ease-in-out infinite 0.2s;
+}
+
+.icon-express {
+  top: 52%;
+  left: -48%;
+}
+.icon-express .floating-icon-inner {
+  animation: floatX3 5.8s ease-in-out infinite 0.4s;
+}
+
+.icon-js {
+  bottom: -5%;
+  left: -32%;
+}
+.icon-js .floating-icon-inner {
+  animation: floatX4 6.5s ease-in-out infinite 0.6s;
+}
+
+/* Right Column (CSS, Node, .NET, MongoDB) */
+.icon-css {
+  top: -10%;
+  right: -32%;
+}
+.icon-css .floating-icon-inner {
+  animation: floatX1 6.5s ease-in-out infinite 0.1s;
+}
+
+.icon-node {
+  top: 18%;
+  right: -48%;
+}
+.icon-node .floating-icon-inner {
+  animation: floatX3 5.5s ease-in-out infinite 0.3s;
+}
+
+.icon-dotnet {
+  top: 52%;
+  right: -48%;
+}
+.icon-dotnet .floating-icon-inner {
+  animation: floatX2 7s ease-in-out infinite 0.5s;
+}
+
+.icon-mongodb {
+  bottom: -5%;
+  right: -32%;
+}
+.icon-mongodb .floating-icon-inner {
+  animation: floatX4 6s ease-in-out infinite 0.7s;
+}
+
+/* Hover sliding tooltips */
+.floating-tooltip {
+  position: absolute;
+  background: rgba(10, 10, 15, 0.95);
+  border: 1px solid var(--brand-color);
+  color: #ffffff;
+  padding: 0.3rem 0.75rem;
+  border-radius: 8px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5), 0 0 10px rgba(var(--brand-color), 0.15);
+  white-space: nowrap;
+  z-index: 10;
+}
+
+/* Tooltip positions based on left/right side columns */
+.icon-html .floating-tooltip,
+.icon-react .floating-tooltip,
+.icon-express .floating-tooltip,
+.icon-js .floating-tooltip {
+  left: auto;
+  right: 120%;
+  transform: translateX(-12px);
+}
+
+.icon-css .floating-tooltip,
+.icon-node .floating-tooltip,
+.icon-mongodb .floating-tooltip,
+.icon-dotnet .floating-tooltip {
+  left: 120%;
+  right: auto;
+  transform: translateX(12px);
+}
+
+/* Hover micro-interactions */
+.floating-icon:hover {
+  transform: scale(1.2) translateY(-4px) !important;
+  border-color: var(--brand-color);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4), 0 0 15px var(--brand-color);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.floating-icon:hover .floating-icon-inner {
+  animation-play-state: paused; /* Pause floating motion on hover for precise feel */
+}
+
+.floating-icon:hover .floating-tooltip {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Infinite Floating Wave Keyframes with both Horizontal (X) and Vertical (Y) sway */
+@keyframes floatX1 {
+  0%, 100% { transform: translateX(0) translateY(0) rotate(0deg); }
+  50% { transform: translateX(-16px) translateY(-10px) rotate(6deg); }
+}
+
+@keyframes floatX2 {
+  0%, 100% { transform: translateX(0) translateY(0) rotate(0deg); }
+  50% { transform: translateX(12px) translateY(-14px) rotate(-8deg); }
+}
+
+@keyframes floatX3 {
+  0%, 100% { transform: translateX(0) translateY(0) rotate(0deg); }
+  50% { transform: translateX(-14px) translateY(12px) rotate(10deg); }
+}
+
+@keyframes floatX4 {
+  0%, 100% { transform: translateX(0) translateY(0) rotate(0deg); }
+  50% { transform: translateX(16px) translateY(8px) rotate(-5deg); }
+}
+
+
+/* Home Page Core Competency Ribbon */
+.home-skills-showcase {
+  width: 100%;
+  max-width: 800px;
+  margin-top: 5rem;
+  border-top: 1px solid var(--border-color);
+  padding-top: 3rem;
+  text-align: center;
+}
+
+.home-skills-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.25rem;
+  margin-top: 1.5rem;
+}
+
+.home-skill-bubble {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 50%;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  transform: translateY(15px);
+  animation: skillItemEntrance 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes skillItemEntrance {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.home-skill-bubble-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--skill-color);
+  font-size: 1.4rem;
+  transition: transform 0.3s ease;
+}
+
+.home-skill-bubble:hover {
+  border-color: var(--skill-color);
+  transform: translateY(-5px) scale(1.1);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35), 0 0 12px rgba(var(--skill-glow-rgb), 0.25);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.home-skill-bubble:hover .home-skill-bubble-icon {
+  transform: scale(1.1) rotate(6deg);
+}
+
+/* Slide up tooltip above the bubble */
+.home-skill-bubble-tooltip {
+  position: absolute;
+  bottom: 125%;
+  left: 50%;
+  transform: translateX(-50%) translateY(8px);
+  background: rgba(10, 10, 15, 0.95);
+  border: 1px solid var(--skill-color);
+  color: #ffffff;
+  padding: 0.3rem 0.65rem;
+  border-radius: 6px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+  white-space: nowrap;
+  z-index: 10;
+}
+
+.home-skill-bubble:hover .home-skill-bubble-tooltip {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Mobile responsive scaling */
+@media (max-width: 600px) {
+  .floating-icon {
+    width: 46px;
+    height: 46px;
+    font-size: 1.25rem;
+  }
+  .icon-html { left: -15%; top: -10%; }
+  .icon-react { left: -28%; top: 18%; }
+  .icon-express { left: -28%; top: 48%; }
+  .icon-js { left: -15%; bottom: -5%; }
+  
+  .icon-css { right: -15%; top: -10%; }
+  .icon-node { right: -28%; top: 18%; }
+  .icon-dotnet { right: -28%; top: 48%; }
+  .icon-mongodb { right: -15%; bottom: -5%; }
+}
+
+/* Typewriter blinking cursor styling */
+.typewriter-cursor {
+  display: inline-block;
+  margin-left: 6px;
+  color: var(--accent-primary, #6366f1);
+  font-weight: 300;
+  animation: blink 0.8s step-end infinite;
+}
+
+@keyframes blink {
+  from, to { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* Hero section top margin and padding optimization */
+.hero {
+  padding-top: 1rem !important;
+}
